@@ -5,7 +5,7 @@ Using Google's provided Cloud Profiler agent, the only methods that should be ca
 + [`CreateProfile`]()
 + [`UpdateProfile`]()
 
-The other method was implemented to test whether it was being called by the agnet:
+The other method was implemented to test whether it was being called by the agent:
 
 + [`CreateOfflineProfile`]()
 
