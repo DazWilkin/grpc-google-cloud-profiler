@@ -38,49 +38,44 @@ ${GOOGLEAPIS}/google/devtools/cloudprofiler/v2/profiler.proto
 
 ## Tailscale
 
-Reusing an existing `hades-canyon.orca-allosaurus.ts.net.[crt|key]` pair
-
-Because:
-
 ```bash
-openssl x509 -enddate -noutout -in hades-canyon.orca-allosaurus.ts.net.crt
-notAfter=May 18 17:03:29 2023 GMT
+tailscale serve localhost:50051
 ```
+```console
+Available within your tailnet:
 
-## `github-webhook`
+https://hades-canyon.orca-allosaurus.ts.net/
+|-- proxy http://localhost:50051
 
-Configured:
-
-```golang
-// Google Cloud Profiler
-cfg := profiler.Config{
-	Service:        subsystem,
-	ServiceVersion: version,
-	DebugLogging:   true,
-	APIAddr:        "hades-canyon.orca-allosaurus.ts.net:50051",
-}
+Press Ctrl+C to exit.
 ```
 
 ## gRPC
 
 ```bash
-ENDPOINT="hades-canyon.orca-allosaurus.ts.net:50051"
+ENDPOINT="hades-canyon.orca-allosaurus.ts.net:443"
 
 grpcurl ${ENDPOINT} list
-
+```
+```console
 google.devtools.cloudprofiler.v2.ProfilerService
 grpc.health.v1.Health
 grpc.reflection.v1alpha.ServerReflection
-
+grpc.reflection.v1alpha.ServerReflection
+```
+```bash
 grpcurl ${ENDPOINT} grpc.health.v1.Health/Check
-
+```
+```JSON
 {
   "status": "SERVING"
 }
-
+```
+```bash
 grpcurl ${ENDPOINT} \
 list google.devtools.cloudprofiler.v2.ProfilerService
-
+```
+```console
 google.devtools.cloudprofiler.v2.ProfilerService.CreateOfflineProfile
 google.devtools.cloudprofiler.v2.ProfilerService.CreateProfile
 google.devtools.cloudprofiler.v2.ProfilerService.UpdateProfile

@@ -8,7 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/brabantcourt/grpc-google-cloud-profiler/google/devtools/cloudprofiler/v2"
+	cloudprofiler "github.com/brabantcourt/grpc-google-cloud-profiler/google/devtools/cloudprofiler/v2"
+
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/known/durationpb"
 )
